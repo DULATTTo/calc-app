@@ -1,34 +1,51 @@
+import React, {useReducer} from "react"
+import DigitButton from "./DigitButton"
 import "./styles.css"
-import React from "react"
+
+export const ACTIONS = {
+  ADD_DIGIT: "add-digit"
+}
+
+function reducer(state, {type, payload}) {
+  switch (type) {
+    case ACTIONS.ADD_DIGIT:
+      return {
+        ...state,
+        currentVal: `${state.currentVal || ""}${payload.digit}`
+      }
+  }
+}
 
 function App() {
+  const [{currentVal, prevVal, operation}, dispatch] = useReducer(reducer, {})
   return (
     <div className="calc-grid">
       <div className="output">
-        <div className="prev-val">123,123 +</div>
-        <div className="current-val">321,321</div>
+        <div className="prev-val">{prevVal} {operation}</div>
+        <div className="current-val">{currentVal}</div>
       </div>
       <button>AC</button>
       <button>+/-</button>
       <button>%</button>
       <button>÷</button>
-      <button className="numbers">7</button>
-      <button className="numbers">8</button>
-      <button className="numbers">9</button>
+      <DigitButton digit="7" dispatch={dispatch}/>
+      <DigitButton digit="8" dispatch={dispatch}/>
+      <DigitButton digit="9" dispatch={dispatch}/>
       <button>x</button>
-      <button className="numbers">4</button>
-      <button className="numbers">5</button>
-      <button className="numbers">6</button>
+      <DigitButton digit="4" dispatch={dispatch}/>
+      <DigitButton digit="5" dispatch={dispatch}/>
+      <DigitButton digit="6" dispatch={dispatch}/>
       <button>-</button>
-      <button className="numbers">1</button>
-      <button className="numbers">2</button>
-      <button className="numbers">3</button>
+      <DigitButton digit="1" dispatch={dispatch}/>
+      <DigitButton digit="2" dispatch={dispatch}/>
+      <DigitButton digit="3" dispatch={dispatch}/>
       <button>+</button>
-      <button className="numbers span-two">0</button>
-      <button>,</button>
+      <DigitButton digit="0" dispatch={dispatch} className="span-two"/>
+      <DigitButton digit="." dispatch={dispatch}/>
       <button>=</button>
     </div>
   );
 }
+
 
 export default App;
