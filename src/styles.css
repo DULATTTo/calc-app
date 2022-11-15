@@ -6,7 +6,7 @@
 body {
   margin: 0;
   padding: 0;
-  background: linear-gradient(to right, #00aaff, #00ff6c)
+  background: linear-gradient(to right, #ff8000, #0073ff);
 }
 
 
@@ -16,7 +16,6 @@ body {
   display: grid;
   grid-template-columns: repeat(4, 6rem);
   grid-template-rows: minmax(7rem, auto) repeat(5, 6rem);
-
 }
 
 
